@@ -1,0 +1,76 @@
+name: BiTGApps Build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+       - name: Initial Setup
+         uses: actions/checkout@v2
+
+       - name: Create BiTGApps
+         run: |
+           rm -rf BiTGApps
+           mkdir BiTGApps
+           install -d out
+
+       - name: Clone Build Sources
+         run: |
+           git clone https://github.com/BiTGApps/BiTGApps-Package BiTGApps
+
+       - name: Create Sources
+         run: |
+           mkdir BiTGApps/sources
+
+       - name: Install Git LFS
+         run: |
+           wget https://github.com/git-lfs/git-lfs/releases/download/v3.2.0/git-lfs-linux-amd64-v3.2.0.tar.gz
+           tar -xz -f git-lfs-linux-amd64-v3.2.0.tar.gz && cd git-lfs-3.2.0 && sudo ./install.sh && cd ..
+
+       - name: Clone Package Sources
+         run: |
+           git clone https://github.com/BiTGApps/addon-sources BiTGApps/sources/addon-sources
+           cd BiTGApps/sources/addon-sources && git lfs install --local && git lfs pull && cd ../..
+
+       - name: Initialize Package Sources
+         run: |
+           cp -rf BiTGApps/sources/addon-sources/Gearhead BiTGApps/Gearhead
+           cp -rf BiTGApps/sources/addon-sources/Markup BiTGApps/Markup
+           cp -rf BiTGApps/sources/addon-sources/Velvet BiTGApps/Velvet
+
+       - name: Remove Package Sources
+         run: |
+           rm -rf BiTGApps/sources
+
+       - name: Build Velvet Package
+         run: |
+           cd BiTGApps/Velvet
+           . envsetup.sh && rm -rf envsetup.sh
+           zip -qr9 Velvet-v1.0.zip * && cd ../..
+           cp -f BiTGApps/Velvet/Velvet-v1.0.zip out
+
+       - name: Build Gearhead Package
+         run: |
+           cd BiTGApps/Gearhead
+           . envsetup.sh && rm -rf envsetup.sh
+           zip -qr9 Gearhead-v1.0.zip * && cd ../..
+           cp -f BiTGApps/Gearhead/Gearhead-v1.0.zip out
+
+       - name: Build Markup Package
+         run: |
+           cd BiTGApps/Markup
+           . envsetup.sh && rm -rf envsetup.sh
+           zip -qr9 Markup-v1.0.zip * && cd ../..
+           cp -f BiTGApps/Markup/Markup-v1.0.zip out
+
+       - name: Upload Build Artifact
+         uses: actions/upload-artifact@v2
+         with:
+           name: BiTGApps-Build
+           path: |
+             out/Gearhead-v1.0.zip
+             out/Markup-v1.0.zip
+             out/Velvet-v1.0.zip
