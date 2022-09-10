@@ -1,5 +1,8 @@
 # This file is part of The BiTGApps Project
 
+# Handle installation of Additional Package
+ZIPNAME="$(basename "$ZIPFILE" ".zip" | tr '[:upper:]' '[:lower:]')"
+
 # Magisk Current Base Folder
 MIRROR="$(magisk --path)/.magisk/mirror"
 
@@ -493,6 +496,17 @@ pkg_TMPPerm() {
   done
 }
 
+is_uninstall() {
+  if [ "$ZIPNAME" = "uninstall" ]; then
+    ui_print "- Uninstall Android Auto"
+    rm -rf $SYSTEM_ADDOND/70-gearhead.sh
+    rm -rf $SYSTEM_PRIV_APP/Gearhead
+    rm -rf $SYSTEM_ETC_PERM/gearhead.xml
+    # End installation
+    on_installed
+  fi
+}
+
 sdk_v25_install() {
   # Remove Android Auto
   rm -rf $SYSTEM_PRIV_APP/Gearhead
@@ -572,6 +586,7 @@ post_install() {
   build_defaults
   mk_component
   system_layout
+  is_uninstall
   sdk_v25_install
   backup_script
   on_installed
