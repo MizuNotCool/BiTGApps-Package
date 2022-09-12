@@ -3,6 +3,9 @@
 # Handle installation of Additional Package
 ZIPNAME="$(basename "$ZIPFILE" ".zip" | tr '[:upper:]' '[:lower:]')"
 
+# Override "ZIPNAME", when it is manipulated by Magisk
+[ "$ZIPNAME" = "install" ] && ZIPNAME="uninstall"
+
 # Magisk Current Base Folder
 MIRROR="$(magisk --path)/.magisk/mirror"
 
@@ -496,7 +499,7 @@ pkg_TMPPerm() {
   done
 }
 
-is_uninstall() {
+is_uninstaller() {
   if [ "$ZIPNAME" = "uninstall" ]; then
     ui_print "- Uninstall Assistant Google"
     rm -rf $SYSTEM_ADDOND/70-velvet.sh
@@ -586,7 +589,7 @@ post_install() {
   build_defaults
   mk_component
   system_layout
-  is_uninstall
+  is_uninstaller
   sdk_v25_install
   backup_script
   on_installed
