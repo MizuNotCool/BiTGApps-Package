@@ -3,9 +3,6 @@
 # Handle installation of Additional Package
 ZIPNAME="$(basename "$ZIPFILE" ".zip" | tr '[:upper:]' '[:lower:]')"
 
-# Override "ZIPNAME", when it is manipulated by Magisk
-[ "$ZIPNAME" = "install" ] && ZIPNAME="uninstall"
-
 # Magisk Current Base Folder
 MIRROR="$(magisk --path)/.magisk/mirror"
 
