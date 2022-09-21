@@ -53,40 +53,40 @@ jobs:
          run: |
            cd BiTGApps/Velvet
            . envsetup.sh && rm -rf envsetup.sh
-           zip -qr9 Velvet-v1.1.zip * && cd ../..
-           cp -f BiTGApps/Velvet/Velvet-v1.1.zip out
+           zip -qr9 Velvet-v1.2.zip * && cd ../..
+           cp -f BiTGApps/Velvet/Velvet-v1.2.zip out
 
        - name: Sign Velvet Package
          run: |
            wget https://github.com/BiTGApps/BiTGApps/raw/master/tools/zipsigner/zipsigner.jar
-           sudo java -jar zipsigner.jar out/Velvet-v1.1.zip out/Velvet-v1.1-Signed.zip
-           rm -rf out/Velvet-v1.1.zip && mv -f out/Velvet-v1.1-Signed.zip out/Velvet-v1.1.zip
-           mv -f out/Velvet-v1.1.zip out/Assistant-v1.1.zip
+           sudo java -jar zipsigner.jar out/Velvet-v1.2.zip out/Velvet-v1.2-Signed.zip
+           rm -rf out/Velvet-v1.2.zip && mv -f out/Velvet-v1.2-Signed.zip out/Velvet-v1.2.zip
+           mv -f out/Velvet-v1.2.zip out/Assistant-v1.2.zip
 
        - name: Build Gearhead Package
          run: |
            cd BiTGApps/Gearhead
            . envsetup.sh && rm -rf envsetup.sh
-           zip -qr9 Gearhead-v1.1.zip * && cd ../..
-           cp -f BiTGApps/Gearhead/Gearhead-v1.1.zip out
+           zip -qr9 Gearhead-v1.2.zip * && cd ../..
+           cp -f BiTGApps/Gearhead/Gearhead-v1.2.zip out
 
        - name: Sign Gearhead Package
          run: |
-           sudo java -jar zipsigner.jar out/Gearhead-v1.1.zip out/Gearhead-v1.1-Signed.zip
-           rm -rf out/Gearhead-v1.1.zip && mv -f out/Gearhead-v1.1-Signed.zip out/Gearhead-v1.1.zip
-           mv -f out/Gearhead-v1.1.zip out/AndroidAuto-v1.1.zip
+           sudo java -jar zipsigner.jar out/Gearhead-v1.2.zip out/Gearhead-v1.2-Signed.zip
+           rm -rf out/Gearhead-v1.2.zip && mv -f out/Gearhead-v1.2-Signed.zip out/Gearhead-v1.2.zip
+           mv -f out/Gearhead-v1.2.zip out/AndroidAuto-v1.2.zip
 
        - name: Build Markup Package
          run: |
            cd BiTGApps/Markup
            . envsetup.sh && rm -rf envsetup.sh
-           zip -qr9 Markup-v1.1.zip * && cd ../..
-           cp -f BiTGApps/Markup/Markup-v1.1.zip out
+           zip -qr9 Markup-v1.2.zip * && cd ../..
+           cp -f BiTGApps/Markup/Markup-v1.2.zip out
 
        - name: Sign Markup Package
          run: |
-           sudo java -jar zipsigner.jar out/Markup-v1.1.zip out/Markup-v1.1-Signed.zip
-           rm -rf out/Markup-v1.1.zip && mv -f out/Markup-v1.1-Signed.zip out/Markup-v1.1.zip
+           sudo java -jar zipsigner.jar out/Markup-v1.2.zip out/Markup-v1.2-Signed.zip
+           rm -rf out/Markup-v1.2.zip && mv -f out/Markup-v1.2-Signed.zip out/Markup-v1.2.zip
 
        - name: Github Release CLI
          run: |
@@ -94,7 +94,7 @@ jobs:
 
        - name: Release Signed Package
          env:
-           RELEASE: v1.1
+           RELEASE: v1.2
          run: |
            github-release upload \
            --owner "BiTGApps" \
@@ -102,15 +102,15 @@ jobs:
            --token "$TOKEN" \
            --tag "${RELEASE}" \
            --release-name "BiTGApps ${RELEASE}" \
-           "out/Assistant-v1.1.zip" \
-           "out/AndroidAuto-v1.1.zip" \
-           "out/Markup-v1.1.zip"
+           "out/Assistant-v1.2.zip" \
+           "out/AndroidAuto-v1.2.zip" \
+           "out/Markup-v1.2.zip"
 
        - name: Upload Build Artifact
          uses: actions/upload-artifact@v2
          with:
            name: BiTGApps-Build
            path: |
-             out/Assistant-v1.1.zip
-             out/AndroidAuto-v1.1.zip
-             out/Markup-v1.1.zip
+             out/Assistant-v1.2.zip
+             out/AndroidAuto-v1.2.zip
+             out/Markup-v1.2.zip
