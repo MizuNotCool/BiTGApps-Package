@@ -17,32 +17,6 @@ fi
 list_files() {
 cat <<EOF
 priv-app/Velvet/Velvet.apk
-priv-app/Velvet/lib/arm/libagsa_renderer_jni.so
-priv-app/Velvet/lib/arm/libandroid_cobalt_core_wrapper.so
-priv-app/Velvet/lib/arm/libandroid_latency_measurement.so
-priv-app/Velvet/lib/arm/libarcore_sdk_c.so
-priv-app/Velvet/lib/arm/libarcore_sdk_jni.so
-priv-app/Velvet/lib/arm/libbarhopper.so
-priv-app/Velvet/lib/arm/libcortex_native_jni.so
-priv-app/Velvet/lib/arm/libcronet.106.0.5228.2.so
-priv-app/Velvet/lib/arm/libelements.so
-priv-app/Velvet/lib/arm/libfilterframework_jni.so
-priv-app/Velvet/lib/arm/libframesequence.so
-priv-app/Velvet/lib/arm/libgeller_jni_lib.so
-priv-app/Velvet/lib/arm/libgmutlsjni.so
-priv-app/Velvet/lib/arm/libgoogle_speech_jni.so
-priv-app/Velvet/lib/arm/libgoogle_speech_micro_jni.so
-priv-app/Velvet/lib/arm/liblens_vision.so
-priv-app/Velvet/lib/arm/libmappedcountercacheversionjni.so
-priv-app/Velvet/lib/arm/libnative_crash_handler_jni.so
-priv-app/Velvet/lib/arm/libnativecrashreporter.so
-priv-app/Velvet/lib/arm/liboffline_actions_jni.so
-priv-app/Velvet/lib/arm/libogg_opus_encoder.so
-priv-app/Velvet/lib/arm/libopuscodec.so
-priv-app/Velvet/lib/arm/libsbcdecoder_jni.so
-priv-app/Velvet/lib/arm/libsoda_jni_no_terse.so
-priv-app/Velvet/lib/arm/libsuggest_jni.so
-priv-app/Velvet/lib/arm/libvcdiffjni.so
 etc/permissions/velvet.xml
 EOF
 }
