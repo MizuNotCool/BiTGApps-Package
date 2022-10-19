@@ -511,7 +511,7 @@ is_uninstaller() {
 }
 
 sdk_v25_install() {
-  # Remove Android Auto
+  # Remove Wellbeing Google
   rm -rf $SYSTEM_PRIV_APP/Wellbeing
   rm -rf $SYSTEM_ETC_PERM/wellbeing.xml
   ui_print "- Installing Wellbeing Google"

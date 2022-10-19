@@ -44,6 +44,7 @@ jobs:
            cp -rf BiTGApps/sources/addon-sources/Gearhead BiTGApps/Gearhead
            cp -rf BiTGApps/sources/addon-sources/Markup BiTGApps/Markup
            cp -rf BiTGApps/sources/addon-sources/Velvet BiTGApps/Velvet
+           cp -rf BiTGApps/sources/addon-sources/Wellbeing BiTGApps/Wellbeing
 
        - name: Remove Package Sources
          run: |
@@ -88,6 +89,18 @@ jobs:
            sudo java -jar zipsigner.jar out/Markup-v1.4.zip out/Markup-v1.4-Signed.zip
            rm -rf out/Markup-v1.4.zip && mv -f out/Markup-v1.4-Signed.zip out/Markup-v1.4.zip
 
+       - name: Build Wellbeing Package
+         run: |
+           cd BiTGApps/Wellbeing
+           . envsetup.sh && rm -rf envsetup.sh
+           zip -qr9 Wellbeing-v1.4.zip * && cd ../..
+           cp -f BiTGApps/Wellbeing/Wellbeing-v1.4.zip out
+
+       - name: Sign Wellbeing Package
+         run: |
+           sudo java -jar zipsigner.jar out/Wellbeing-v1.4.zip out/Wellbeing-v1.4-Signed.zip
+           rm -rf out/Wellbeing-v1.4.zip && mv -f out/Wellbeing-v1.4-Signed.zip out/Wellbeing-v1.4.zip
+
        - name: Github Release CLI
          run: |
            npm install -g github-release-cli
@@ -104,7 +117,8 @@ jobs:
            --release-name "BiTGApps ${RELEASE}" \
            "out/Assistant-v1.4.zip" \
            "out/AndroidAuto-v1.4.zip" \
-           "out/Markup-v1.4.zip"
+           "out/Markup-v1.4.zip" \
+           "out/Wellbeing-v1.4.zip"
 
        - name: Upload Build Artifact
          uses: actions/upload-artifact@v2
@@ -114,3 +128,4 @@ jobs:
              out/Assistant-v1.4.zip
              out/AndroidAuto-v1.4.zip
              out/Markup-v1.4.zip
+             out/Wellbeing-v1.4.zip
