@@ -41,28 +41,103 @@ jobs:
 
        - name: Initialize Package Sources
          run: |
+           cp -rf BiTGApps/sources/addon-sources/Calculator BiTGApps/Calculator
+           cp -rf BiTGApps/sources/addon-sources/Calendar BiTGApps/Calendar
+           cp -rf BiTGApps/sources/addon-sources/Chrome BiTGApps/Chrome
+           cp -rf BiTGApps/sources/addon-sources/Contacts BiTGApps/Contacts
+           cp -rf BiTGApps/sources/addon-sources/DeskClock BiTGApps/DeskClock
+           cp -rf BiTGApps/sources/addon-sources/Dialer BiTGApps/Dialer
            cp -rf BiTGApps/sources/addon-sources/Gearhead BiTGApps/Gearhead
+           cp -rf BiTGApps/sources/addon-sources/Gmail BiTGApps/Gmail
+           cp -rf BiTGApps/sources/addon-sources/Keyboard BiTGApps/Keyboard
+           cp -rf BiTGApps/sources/addon-sources/Maps BiTGApps/Maps
            cp -rf BiTGApps/sources/addon-sources/Markup BiTGApps/Markup
+           cp -rf BiTGApps/sources/addon-sources/Messaging BiTGApps/Messaging
+           cp -rf BiTGApps/sources/addon-sources/Photos BiTGApps/Photos
+           cp -rf BiTGApps/sources/addon-sources/Speech BiTGApps/Speech
            cp -rf BiTGApps/sources/addon-sources/Velvet BiTGApps/Velvet
+           cp -rf BiTGApps/sources/addon-sources/WebView BiTGApps/WebView
            cp -rf BiTGApps/sources/addon-sources/Wellbeing BiTGApps/Wellbeing
 
        - name: Remove Package Sources
          run: |
            rm -rf BiTGApps/sources
 
-       - name: Build Velvet Package
-         run: |
-           cd BiTGApps/Velvet
-           . envsetup.sh && rm -rf envsetup.sh
-           zip -qr9 Velvet-v1.4.zip * && cd ../..
-           cp -f BiTGApps/Velvet/Velvet-v1.4.zip out
-
-       - name: Sign Velvet Package
+       - name: Download ZIP Signing Tool
          run: |
            wget https://github.com/BiTGApps/BiTGApps/raw/master/tools/zipsigner/zipsigner.jar
-           sudo java -jar zipsigner.jar out/Velvet-v1.4.zip out/Velvet-v1.4-Signed.zip
-           rm -rf out/Velvet-v1.4.zip && mv -f out/Velvet-v1.4-Signed.zip out/Velvet-v1.4.zip
-           mv -f out/Velvet-v1.4.zip out/Assistant-v1.4.zip
+
+       - name: Build Calculator Package
+         run: |
+           cd BiTGApps/Calculator
+           . envsetup.sh && rm -rf envsetup.sh
+           zip -qr9 Calculator-v1.4.zip * && cd ../..
+           cp -f BiTGApps/Calculator/Calculator-v1.4.zip out
+
+       - name: Sign Calculator Package
+         run: |
+           sudo java -jar zipsigner.jar out/Calculator-v1.4.zip out/Calculator-v1.4-Signed.zip
+           rm -rf out/Calculator-v1.4.zip && mv -f out/Calculator-v1.4-Signed.zip out/Calculator-v1.4.zip
+
+       - name: Build Calendar Package
+         run: |
+           cd BiTGApps/Calendar
+           . envsetup.sh && rm -rf envsetup.sh
+           zip -qr9 Calendar-v1.4.zip * && cd ../..
+           cp -f BiTGApps/Calendar/Calendar-v1.4.zip out
+
+       - name: Sign Calendar Package
+         run: |
+           sudo java -jar zipsigner.jar out/Calendar-v1.4.zip out/Calendar-v1.4-Signed.zip
+           rm -rf out/Calendar-v1.4.zip && mv -f out/Calendar-v1.4-Signed.zip out/Calendar-v1.4.zip
+
+       - name: Build Chrome Package
+         run: |
+           cd BiTGApps/Chrome
+           . envsetup.sh && rm -rf envsetup.sh
+           zip -qr9 Chrome-v1.4.zip * && cd ../..
+           cp -f BiTGApps/Chrome/Chrome-v1.4.zip out
+
+       - name: Sign Chrome Package
+         run: |
+           sudo java -jar zipsigner.jar out/Chrome-v1.4.zip out/Chrome-v1.4-Signed.zip
+           rm -rf out/Chrome-v1.4.zip && mv -f out/Chrome-v1.4-Signed.zip out/Chrome-v1.4.zip
+
+       - name: Build Contacts Package
+         run: |
+           cd BiTGApps/Contacts
+           . envsetup.sh && rm -rf envsetup.sh
+           zip -qr9 Contacts-v1.4.zip * && cd ../..
+           cp -f BiTGApps/Contacts/Contacts-v1.4.zip out
+
+       - name: Sign Contacts Package
+         run: |
+           sudo java -jar zipsigner.jar out/Contacts-v1.4.zip out/Contacts-v1.4-Signed.zip
+           rm -rf out/Contacts-v1.4.zip && mv -f out/Contacts-v1.4-Signed.zip out/Contacts-v1.4.zip
+
+       - name: Build DeskClock Package
+         run: |
+           cd BiTGApps/DeskClock
+           . envsetup.sh && rm -rf envsetup.sh
+           zip -qr9 DeskClock-v1.4.zip * && cd ../..
+           cp -f BiTGApps/DeskClock/DeskClock-v1.4.zip out
+
+       - name: Sign DeskClock Package
+         run: |
+           sudo java -jar zipsigner.jar out/DeskClock-v1.4.zip out/DeskClock-v1.4-Signed.zip
+           rm -rf out/DeskClock-v1.4.zip && mv -f out/DeskClock-v1.4-Signed.zip out/DeskClock-v1.4.zip
+
+       - name: Build Dialer Package
+         run: |
+           cd BiTGApps/Dialer
+           . envsetup.sh && rm -rf envsetup.sh
+           zip -qr9 Dialer-v1.4.zip * && cd ../..
+           cp -f BiTGApps/Dialer/Dialer-v1.4.zip out
+
+       - name: Sign Dialer Package
+         run: |
+           sudo java -jar zipsigner.jar out/Dialer-v1.4.zip out/Dialer-v1.4-Signed.zip
+           rm -rf out/Dialer-v1.4.zip && mv -f out/Dialer-v1.4-Signed.zip out/Dialer-v1.4.zip
 
        - name: Build Gearhead Package
          run: |
@@ -77,6 +152,43 @@ jobs:
            rm -rf out/Gearhead-v1.4.zip && mv -f out/Gearhead-v1.4-Signed.zip out/Gearhead-v1.4.zip
            mv -f out/Gearhead-v1.4.zip out/AndroidAuto-v1.4.zip
 
+       - name: Build Gmail Package
+         run: |
+           cd BiTGApps/Gmail
+           . envsetup.sh && rm -rf envsetup.sh
+           zip -qr9 Gmail-v1.4.zip * && cd ../..
+           cp -f BiTGApps/Gmail/Gmail-v1.4.zip out
+
+       - name: Sign Gmail Package
+         run: |
+           sudo java -jar zipsigner.jar out/Gmail-v1.4.zip out/Gmail-v1.4-Signed.zip
+           rm -rf out/Gmail-v1.4.zip && mv -f out/Gmail-v1.4-Signed.zip out/Gmail-v1.4.zip
+
+       - name: Build Keyboard Package
+         run: |
+           cd BiTGApps/Keyboard
+           . envsetup.sh && rm -rf envsetup.sh
+           zip -qr9 Keyboard-v1.4.zip * && cd ../..
+           cp -f BiTGApps/Keyboard/Keyboard-v1.4.zip out
+
+       - name: Sign Keyboard Package
+         run: |
+           sudo java -jar zipsigner.jar out/Keyboard-v1.4.zip out/Keyboard-v1.4-Signed.zip
+           rm -rf out/Keyboard-v1.4.zip && mv -f out/Keyboard-v1.4-Signed.zip out/Keyboard-v1.4.zip
+           mv -f out/Keyboard-v1.4.zip out/LatinIME-v1.4.zip
+
+       - name: Build Maps Package
+         run: |
+           cd BiTGApps/Maps
+           . envsetup.sh && rm -rf envsetup.sh
+           zip -qr9 Maps-v1.4.zip * && cd ../..
+           cp -f BiTGApps/Maps/Maps-v1.4.zip out
+
+       - name: Sign Maps Package
+         run: |
+           sudo java -jar zipsigner.jar out/Maps-v1.4.zip out/Maps-v1.4-Signed.zip
+           rm -rf out/Maps-v1.4.zip && mv -f out/Maps-v1.4-Signed.zip out/Maps-v1.4.zip
+
        - name: Build Markup Package
          run: |
            cd BiTGApps/Markup
@@ -88,6 +200,68 @@ jobs:
          run: |
            sudo java -jar zipsigner.jar out/Markup-v1.4.zip out/Markup-v1.4-Signed.zip
            rm -rf out/Markup-v1.4.zip && mv -f out/Markup-v1.4-Signed.zip out/Markup-v1.4.zip
+
+       - name: Build Messaging Package
+         run: |
+           cd BiTGApps/Messaging
+           . envsetup.sh && rm -rf envsetup.sh
+           zip -qr9 Messaging-v1.4.zip * && cd ../..
+           cp -f BiTGApps/Messaging/Messaging-v1.4.zip out
+
+       - name: Sign Messaging Package
+         run: |
+           sudo java -jar zipsigner.jar out/Messaging-v1.4.zip out/Messaging-v1.4-Signed.zip
+           rm -rf out/Messaging-v1.4.zip && mv -f out/Messaging-v1.4-Signed.zip out/Messaging-v1.4.zip
+
+       - name: Build Photos Package
+         run: |
+           cd BiTGApps/Photos
+           . envsetup.sh && rm -rf envsetup.sh
+           zip -qr9 Photos-v1.4.zip * && cd ../..
+           cp -f BiTGApps/Photos/Photos-v1.4.zip out
+
+       - name: Sign Photos Package
+         run: |
+           sudo java -jar zipsigner.jar out/Photos-v1.4.zip out/Photos-v1.4-Signed.zip
+           rm -rf out/Photos-v1.4.zip && mv -f out/Photos-v1.4-Signed.zip out/Photos-v1.4.zip
+
+       - name: Build Speech Package
+         run: |
+           cd BiTGApps/Speech
+           . envsetup.sh && rm -rf envsetup.sh
+           zip -qr9 Speech-v1.4.zip * && cd ../..
+           cp -f BiTGApps/Speech/Speech-v1.4.zip out
+
+       - name: Sign Speech Package
+         run: |
+           sudo java -jar zipsigner.jar out/Speech-v1.4.zip out/Speech-v1.4-Signed.zip
+           rm -rf out/Speech-v1.4.zip && mv -f out/Speech-v1.4-Signed.zip out/Speech-v1.4.zip
+           mv -f out/Speech-v1.4.zip out/GoogleTTS-v1.4.zip
+
+       - name: Build Velvet Package
+         run: |
+           cd BiTGApps/Velvet
+           . envsetup.sh && rm -rf envsetup.sh
+           zip -qr9 Velvet-v1.4.zip * && cd ../..
+           cp -f BiTGApps/Velvet/Velvet-v1.4.zip out
+
+       - name: Sign Velvet Package
+         run: |
+           sudo java -jar zipsigner.jar out/Velvet-v1.4.zip out/Velvet-v1.4-Signed.zip
+           rm -rf out/Velvet-v1.4.zip && mv -f out/Velvet-v1.4-Signed.zip out/Velvet-v1.4.zip
+           mv -f out/Velvet-v1.4.zip out/Assistant-v1.4.zip
+
+       - name: Build WebView Package
+         run: |
+           cd BiTGApps/WebView
+           . envsetup.sh && rm -rf envsetup.sh
+           zip -qr9 WebView-v1.4.zip * && cd ../..
+           cp -f BiTGApps/WebView/WebView-v1.4.zip out
+
+       - name: Sign WebView Package
+         run: |
+           sudo java -jar zipsigner.jar out/WebView-v1.4.zip out/WebView-v1.4-Signed.zip
+           rm -rf out/WebView-v1.4.zip && mv -f out/WebView-v1.4-Signed.zip out/WebView-v1.4.zip
 
        - name: Build Wellbeing Package
          run: |
@@ -108,6 +282,7 @@ jobs:
        - name: Release Signed Package
          env:
            RELEASE: v1.4
+           PACKAGE: false
          run: |
            github-release upload \
            --owner "BiTGApps" \
@@ -117,15 +292,42 @@ jobs:
            --release-name "BiTGApps ${RELEASE}" \
            "out/Assistant-v1.4.zip" \
            "out/AndroidAuto-v1.4.zip" \
+           "out/Calculator-v1.4.zip" \
+           "out/Calendar-v1.4.zip" \
+           "out/Chrome-v1.4.zip" \
+           "out/Contacts-v1.4.zip" \
+           "out/DeskClock-v1.4.zip" \
+           "out/Dialer-v1.4.zip" \
+           "out/Gmail-v1.4.zip" \
+           "out/GoogleTTS-v1.4.zip" \
+           "out/LatinIME-v1.4.zip" \
+           "out/Maps-v1.4.zip" \
            "out/Markup-v1.4.zip" \
+           "out/Messaging-v1.4.zip" \
+           "out/Photos-v1.4.zip" \
+           "out/WebView-v1.4.zip" \
            "out/Wellbeing-v1.4.zip"
 
        - name: Upload Build Artifact
+         if: ${{ env.PACKAGE == 'true' }}
          uses: actions/upload-artifact@v2
          with:
            name: BiTGApps-Build
            path: |
              out/Assistant-v1.4.zip
              out/AndroidAuto-v1.4.zip
+             out/Calculator-v1.4.zip
+             out/Calendar-v1.4.zip
+             out/Chrome-v1.4.zip
+             out/Contacts-v1.4.zip
+             out/DeskClock-v1.4.zip
+             out/Dialer-v1.4.zip
+             out/Gmail-v1.4.zip
+             out/GoogleTTS-v1.4.zip
+             out/LatinIME-v1.4.zip
+             out/Maps-v1.4.zip
              out/Markup-v1.4.zip
+             out/Messaging-v1.4.zip
+             out/Photos-v1.4.zip
+             out/WebView-v1.4.zip
              out/Wellbeing-v1.4.zip
