@@ -5,6 +5,7 @@ on:
 
 env:
   TOKEN: ${{ secrets.TOKEN }}
+  RELEASE: v1.5
 
 jobs:
   build:
@@ -71,209 +72,209 @@ jobs:
          run: |
            cd BiTGApps/Calculator
            . envsetup.sh && rm -rf envsetup.sh
-           zip -qr9 Calculator-v1.5.zip * && cd ../..
-           cp -f BiTGApps/Calculator/Calculator-v1.5.zip out
+           zip -qr9 Calculator-$RELEASE.zip * && cd ../..
+           cp -f BiTGApps/Calculator/Calculator-$RELEASE.zip out
 
        - name: Sign Calculator Package
          run: |
-           sudo java -jar zipsigner.jar out/Calculator-v1.5.zip out/Calculator-v1.5-Signed.zip
-           rm -rf out/Calculator-v1.5.zip && mv -f out/Calculator-v1.5-Signed.zip out/Calculator-v1.5.zip
+           sudo java -jar zipsigner.jar out/Calculator-$RELEASE.zip out/Calculator-$RELEASE-Signed.zip
+           rm -rf out/Calculator-$RELEASE.zip && mv -f out/Calculator-$RELEASE-Signed.zip out/Calculator-$RELEASE.zip
 
        - name: Build Calendar Package
          run: |
            cd BiTGApps/Calendar
            . envsetup.sh && rm -rf envsetup.sh
-           zip -qr9 Calendar-v1.5.zip * && cd ../..
-           cp -f BiTGApps/Calendar/Calendar-v1.5.zip out
+           zip -qr9 Calendar-$RELEASE.zip * && cd ../..
+           cp -f BiTGApps/Calendar/Calendar-$RELEASE.zip out
 
        - name: Sign Calendar Package
          run: |
-           sudo java -jar zipsigner.jar out/Calendar-v1.5.zip out/Calendar-v1.5-Signed.zip
-           rm -rf out/Calendar-v1.5.zip && mv -f out/Calendar-v1.5-Signed.zip out/Calendar-v1.5.zip
+           sudo java -jar zipsigner.jar out/Calendar-$RELEASE.zip out/Calendar-$RELEASE-Signed.zip
+           rm -rf out/Calendar-$RELEASE.zip && mv -f out/Calendar-$RELEASE-Signed.zip out/Calendar-$RELEASE.zip
 
        - name: Build Chrome Package
          run: |
            cd BiTGApps/Chrome
            . envsetup.sh && rm -rf envsetup.sh
-           zip -qr9 Chrome-v1.5.zip * && cd ../..
-           cp -f BiTGApps/Chrome/Chrome-v1.5.zip out
+           zip -qr9 Chrome-$RELEASE.zip * && cd ../..
+           cp -f BiTGApps/Chrome/Chrome-$RELEASE.zip out
 
        - name: Sign Chrome Package
          run: |
-           sudo java -jar zipsigner.jar out/Chrome-v1.5.zip out/Chrome-v1.5-Signed.zip
-           rm -rf out/Chrome-v1.5.zip && mv -f out/Chrome-v1.5-Signed.zip out/Chrome-v1.5.zip
+           sudo java -jar zipsigner.jar out/Chrome-$RELEASE.zip out/Chrome-$RELEASE-Signed.zip
+           rm -rf out/Chrome-$RELEASE.zip && mv -f out/Chrome-$RELEASE-Signed.zip out/Chrome-$RELEASE.zip
 
        - name: Build Contacts Package
          run: |
            cd BiTGApps/Contacts
            . envsetup.sh && rm -rf envsetup.sh
-           zip -qr9 Contacts-v1.5.zip * && cd ../..
-           cp -f BiTGApps/Contacts/Contacts-v1.5.zip out
+           zip -qr9 Contacts-$RELEASE.zip * && cd ../..
+           cp -f BiTGApps/Contacts/Contacts-$RELEASE.zip out
 
        - name: Sign Contacts Package
          run: |
-           sudo java -jar zipsigner.jar out/Contacts-v1.5.zip out/Contacts-v1.5-Signed.zip
-           rm -rf out/Contacts-v1.5.zip && mv -f out/Contacts-v1.5-Signed.zip out/Contacts-v1.5.zip
+           sudo java -jar zipsigner.jar out/Contacts-$RELEASE.zip out/Contacts-$RELEASE-Signed.zip
+           rm -rf out/Contacts-$RELEASE.zip && mv -f out/Contacts-$RELEASE-Signed.zip out/Contacts-$RELEASE.zip
 
        - name: Build DeskClock Package
          run: |
            cd BiTGApps/DeskClock
            . envsetup.sh && rm -rf envsetup.sh
-           zip -qr9 DeskClock-v1.5.zip * && cd ../..
-           cp -f BiTGApps/DeskClock/DeskClock-v1.5.zip out
+           zip -qr9 DeskClock-$RELEASE.zip * && cd ../..
+           cp -f BiTGApps/DeskClock/DeskClock-$RELEASE.zip out
 
        - name: Sign DeskClock Package
          run: |
-           sudo java -jar zipsigner.jar out/DeskClock-v1.5.zip out/DeskClock-v1.5-Signed.zip
-           rm -rf out/DeskClock-v1.5.zip && mv -f out/DeskClock-v1.5-Signed.zip out/DeskClock-v1.5.zip
+           sudo java -jar zipsigner.jar out/DeskClock-$RELEASE.zip out/DeskClock-$RELEASE-Signed.zip
+           rm -rf out/DeskClock-$RELEASE.zip && mv -f out/DeskClock-$RELEASE-Signed.zip out/DeskClock-$RELEASE.zip
 
        - name: Build Dialer Package
          run: |
            cd BiTGApps/Dialer
            . envsetup.sh && rm -rf envsetup.sh
-           zip -qr9 Dialer-v1.5.zip * && cd ../..
-           cp -f BiTGApps/Dialer/Dialer-v1.5.zip out
+           zip -qr9 Dialer-$RELEASE.zip * && cd ../..
+           cp -f BiTGApps/Dialer/Dialer-$RELEASE.zip out
 
        - name: Sign Dialer Package
          run: |
-           sudo java -jar zipsigner.jar out/Dialer-v1.5.zip out/Dialer-v1.5-Signed.zip
-           rm -rf out/Dialer-v1.5.zip && mv -f out/Dialer-v1.5-Signed.zip out/Dialer-v1.5.zip
+           sudo java -jar zipsigner.jar out/Dialer-$RELEASE.zip out/Dialer-$RELEASE-Signed.zip
+           rm -rf out/Dialer-$RELEASE.zip && mv -f out/Dialer-$RELEASE-Signed.zip out/Dialer-$RELEASE.zip
 
        - name: Build Gearhead Package
          run: |
            cd BiTGApps/Gearhead
            . envsetup.sh && rm -rf envsetup.sh
-           zip -qr9 Gearhead-v1.5.zip * && cd ../..
-           cp -f BiTGApps/Gearhead/Gearhead-v1.5.zip out
+           zip -qr9 Gearhead-$RELEASE.zip * && cd ../..
+           cp -f BiTGApps/Gearhead/Gearhead-$RELEASE.zip out
 
        - name: Sign Gearhead Package
          run: |
-           sudo java -jar zipsigner.jar out/Gearhead-v1.5.zip out/Gearhead-v1.5-Signed.zip
-           rm -rf out/Gearhead-v1.5.zip && mv -f out/Gearhead-v1.5-Signed.zip out/Gearhead-v1.5.zip
-           mv -f out/Gearhead-v1.5.zip out/AndroidAuto-v1.5.zip
+           sudo java -jar zipsigner.jar out/Gearhead-$RELEASE.zip out/Gearhead-$RELEASE-Signed.zip
+           rm -rf out/Gearhead-$RELEASE.zip && mv -f out/Gearhead-$RELEASE-Signed.zip out/Gearhead-$RELEASE.zip
+           mv -f out/Gearhead-$RELEASE.zip out/AndroidAuto-$RELEASE.zip
 
        - name: Build Gmail Package
          run: |
            cd BiTGApps/Gmail
            . envsetup.sh && rm -rf envsetup.sh
-           zip -qr9 Gmail-v1.5.zip * && cd ../..
-           cp -f BiTGApps/Gmail/Gmail-v1.5.zip out
+           zip -qr9 Gmail-$RELEASE.zip * && cd ../..
+           cp -f BiTGApps/Gmail/Gmail-$RELEASE.zip out
 
        - name: Sign Gmail Package
          run: |
-           sudo java -jar zipsigner.jar out/Gmail-v1.5.zip out/Gmail-v1.5-Signed.zip
-           rm -rf out/Gmail-v1.5.zip && mv -f out/Gmail-v1.5-Signed.zip out/Gmail-v1.5.zip
+           sudo java -jar zipsigner.jar out/Gmail-$RELEASE.zip out/Gmail-$RELEASE-Signed.zip
+           rm -rf out/Gmail-$RELEASE.zip && mv -f out/Gmail-$RELEASE-Signed.zip out/Gmail-$RELEASE.zip
 
        - name: Build Keyboard Package
          run: |
            cd BiTGApps/Keyboard
            . envsetup.sh && rm -rf envsetup.sh
-           zip -qr9 Keyboard-v1.5.zip * && cd ../..
-           cp -f BiTGApps/Keyboard/Keyboard-v1.5.zip out
+           zip -qr9 Keyboard-$RELEASE.zip * && cd ../..
+           cp -f BiTGApps/Keyboard/Keyboard-$RELEASE.zip out
 
        - name: Sign Keyboard Package
          run: |
-           sudo java -jar zipsigner.jar out/Keyboard-v1.5.zip out/Keyboard-v1.5-Signed.zip
-           rm -rf out/Keyboard-v1.5.zip && mv -f out/Keyboard-v1.5-Signed.zip out/Keyboard-v1.5.zip
-           mv -f out/Keyboard-v1.5.zip out/LatinIME-v1.5.zip
+           sudo java -jar zipsigner.jar out/Keyboard-$RELEASE.zip out/Keyboard-$RELEASE-Signed.zip
+           rm -rf out/Keyboard-$RELEASE.zip && mv -f out/Keyboard-$RELEASE-Signed.zip out/Keyboard-$RELEASE.zip
+           mv -f out/Keyboard-$RELEASE.zip out/LatinIME-$RELEASE.zip
 
        - name: Build Maps Package
          run: |
            cd BiTGApps/Maps
            . envsetup.sh && rm -rf envsetup.sh
-           zip -qr9 Maps-v1.5.zip * && cd ../..
-           cp -f BiTGApps/Maps/Maps-v1.5.zip out
+           zip -qr9 Maps-$RELEASE.zip * && cd ../..
+           cp -f BiTGApps/Maps/Maps-$RELEASE.zip out
 
        - name: Sign Maps Package
          run: |
-           sudo java -jar zipsigner.jar out/Maps-v1.5.zip out/Maps-v1.5-Signed.zip
-           rm -rf out/Maps-v1.5.zip && mv -f out/Maps-v1.5-Signed.zip out/Maps-v1.5.zip
+           sudo java -jar zipsigner.jar out/Maps-$RELEASE.zip out/Maps-$RELEASE-Signed.zip
+           rm -rf out/Maps-$RELEASE.zip && mv -f out/Maps-$RELEASE-Signed.zip out/Maps-$RELEASE.zip
 
        - name: Build Markup Package
          run: |
            cd BiTGApps/Markup
            . envsetup.sh && rm -rf envsetup.sh
-           zip -qr9 Markup-v1.5.zip * && cd ../..
-           cp -f BiTGApps/Markup/Markup-v1.5.zip out
+           zip -qr9 Markup-$RELEASE.zip * && cd ../..
+           cp -f BiTGApps/Markup/Markup-$RELEASE.zip out
 
        - name: Sign Markup Package
          run: |
-           sudo java -jar zipsigner.jar out/Markup-v1.5.zip out/Markup-v1.5-Signed.zip
-           rm -rf out/Markup-v1.5.zip && mv -f out/Markup-v1.5-Signed.zip out/Markup-v1.5.zip
+           sudo java -jar zipsigner.jar out/Markup-$RELEASE.zip out/Markup-$RELEASE-Signed.zip
+           rm -rf out/Markup-$RELEASE.zip && mv -f out/Markup-$RELEASE-Signed.zip out/Markup-$RELEASE.zip
 
        - name: Build Messaging Package
          run: |
            cd BiTGApps/Messaging
            . envsetup.sh && rm -rf envsetup.sh
-           zip -qr9 Messaging-v1.5.zip * && cd ../..
-           cp -f BiTGApps/Messaging/Messaging-v1.5.zip out
+           zip -qr9 Messaging-$RELEASE.zip * && cd ../..
+           cp -f BiTGApps/Messaging/Messaging-$RELEASE.zip out
 
        - name: Sign Messaging Package
          run: |
-           sudo java -jar zipsigner.jar out/Messaging-v1.5.zip out/Messaging-v1.5-Signed.zip
-           rm -rf out/Messaging-v1.5.zip && mv -f out/Messaging-v1.5-Signed.zip out/Messaging-v1.5.zip
+           sudo java -jar zipsigner.jar out/Messaging-$RELEASE.zip out/Messaging-$RELEASE-Signed.zip
+           rm -rf out/Messaging-$RELEASE.zip && mv -f out/Messaging-$RELEASE-Signed.zip out/Messaging-$RELEASE.zip
 
        - name: Build Photos Package
          run: |
            cd BiTGApps/Photos
            . envsetup.sh && rm -rf envsetup.sh
-           zip -qr9 Photos-v1.5.zip * && cd ../..
-           cp -f BiTGApps/Photos/Photos-v1.5.zip out
+           zip -qr9 Photos-$RELEASE.zip * && cd ../..
+           cp -f BiTGApps/Photos/Photos-$RELEASE.zip out
 
        - name: Sign Photos Package
          run: |
-           sudo java -jar zipsigner.jar out/Photos-v1.5.zip out/Photos-v1.5-Signed.zip
-           rm -rf out/Photos-v1.5.zip && mv -f out/Photos-v1.5-Signed.zip out/Photos-v1.5.zip
+           sudo java -jar zipsigner.jar out/Photos-$RELEASE.zip out/Photos-$RELEASE-Signed.zip
+           rm -rf out/Photos-$RELEASE.zip && mv -f out/Photos-$RELEASE-Signed.zip out/Photos-$RELEASE.zip
 
        - name: Build Speech Package
          run: |
            cd BiTGApps/Speech
            . envsetup.sh && rm -rf envsetup.sh
-           zip -qr9 Speech-v1.5.zip * && cd ../..
-           cp -f BiTGApps/Speech/Speech-v1.5.zip out
+           zip -qr9 Speech-$RELEASE.zip * && cd ../..
+           cp -f BiTGApps/Speech/Speech-$RELEASE.zip out
 
        - name: Sign Speech Package
          run: |
-           sudo java -jar zipsigner.jar out/Speech-v1.5.zip out/Speech-v1.5-Signed.zip
-           rm -rf out/Speech-v1.5.zip && mv -f out/Speech-v1.5-Signed.zip out/Speech-v1.5.zip
-           mv -f out/Speech-v1.5.zip out/GoogleTTS-v1.5.zip
+           sudo java -jar zipsigner.jar out/Speech-$RELEASE.zip out/Speech-$RELEASE-Signed.zip
+           rm -rf out/Speech-$RELEASE.zip && mv -f out/Speech-$RELEASE-Signed.zip out/Speech-$RELEASE.zip
+           mv -f out/Speech-$RELEASE.zip out/GoogleTTS-$RELEASE.zip
 
        - name: Build Velvet Package
          run: |
            cd BiTGApps/Velvet
            . envsetup.sh && rm -rf envsetup.sh
-           zip -qr9 Velvet-v1.5.zip * && cd ../..
-           cp -f BiTGApps/Velvet/Velvet-v1.5.zip out
+           zip -qr9 Velvet-$RELEASE.zip * && cd ../..
+           cp -f BiTGApps/Velvet/Velvet-$RELEASE.zip out
 
        - name: Sign Velvet Package
          run: |
-           sudo java -jar zipsigner.jar out/Velvet-v1.5.zip out/Velvet-v1.5-Signed.zip
-           rm -rf out/Velvet-v1.5.zip && mv -f out/Velvet-v1.5-Signed.zip out/Velvet-v1.5.zip
-           mv -f out/Velvet-v1.5.zip out/Assistant-v1.5.zip
+           sudo java -jar zipsigner.jar out/Velvet-$RELEASE.zip out/Velvet-$RELEASE-Signed.zip
+           rm -rf out/Velvet-$RELEASE.zip && mv -f out/Velvet-$RELEASE-Signed.zip out/Velvet-$RELEASE.zip
+           mv -f out/Velvet-$RELEASE.zip out/Assistant-$RELEASE.zip
 
        - name: Build WebView Package
          run: |
            cd BiTGApps/WebView
            . envsetup.sh && rm -rf envsetup.sh
-           zip -qr9 WebView-v1.5.zip * && cd ../..
-           cp -f BiTGApps/WebView/WebView-v1.5.zip out
+           zip -qr9 WebView-$RELEASE.zip * && cd ../..
+           cp -f BiTGApps/WebView/WebView-$RELEASE.zip out
 
        - name: Sign WebView Package
          run: |
-           sudo java -jar zipsigner.jar out/WebView-v1.5.zip out/WebView-v1.5-Signed.zip
-           rm -rf out/WebView-v1.5.zip && mv -f out/WebView-v1.5-Signed.zip out/WebView-v1.5.zip
+           sudo java -jar zipsigner.jar out/WebView-$RELEASE.zip out/WebView-$RELEASE-Signed.zip
+           rm -rf out/WebView-$RELEASE.zip && mv -f out/WebView-$RELEASE-Signed.zip out/WebView-$RELEASE.zip
 
        - name: Build Wellbeing Package
          run: |
            cd BiTGApps/Wellbeing
            . envsetup.sh && rm -rf envsetup.sh
-           zip -qr9 Wellbeing-v1.5.zip * && cd ../..
-           cp -f BiTGApps/Wellbeing/Wellbeing-v1.5.zip out
+           zip -qr9 Wellbeing-$RELEASE.zip * && cd ../..
+           cp -f BiTGApps/Wellbeing/Wellbeing-$RELEASE.zip out
 
        - name: Sign Wellbeing Package
          run: |
-           sudo java -jar zipsigner.jar out/Wellbeing-v1.5.zip out/Wellbeing-v1.5-Signed.zip
-           rm -rf out/Wellbeing-v1.5.zip && mv -f out/Wellbeing-v1.5-Signed.zip out/Wellbeing-v1.5.zip
+           sudo java -jar zipsigner.jar out/Wellbeing-$RELEASE.zip out/Wellbeing-$RELEASE-Signed.zip
+           rm -rf out/Wellbeing-$RELEASE.zip && mv -f out/Wellbeing-$RELEASE-Signed.zip out/Wellbeing-$RELEASE.zip
 
        - name: Github Release CLI
          run: |
@@ -281,7 +282,6 @@ jobs:
 
        - name: Release Signed Package
          env:
-           RELEASE: v1.5
            PACKAGE: false
          run: |
            github-release upload \
@@ -290,44 +290,44 @@ jobs:
            --token "$TOKEN" \
            --tag "${RELEASE}" \
            --release-name "BiTGApps ${RELEASE}" \
-           "out/Assistant-v1.5.zip" \
-           "out/AndroidAuto-v1.5.zip" \
-           "out/Calculator-v1.5.zip" \
-           "out/Calendar-v1.5.zip" \
-           "out/Chrome-v1.5.zip" \
-           "out/Contacts-v1.5.zip" \
-           "out/DeskClock-v1.5.zip" \
-           "out/Dialer-v1.5.zip" \
-           "out/Gmail-v1.5.zip" \
-           "out/GoogleTTS-v1.5.zip" \
-           "out/LatinIME-v1.5.zip" \
-           "out/Maps-v1.5.zip" \
-           "out/Markup-v1.5.zip" \
-           "out/Messaging-v1.5.zip" \
-           "out/Photos-v1.5.zip" \
-           "out/WebView-v1.5.zip" \
-           "out/Wellbeing-v1.5.zip"
+           "out/Assistant-$RELEASE.zip" \
+           "out/AndroidAuto-$RELEASE.zip" \
+           "out/Calculator-$RELEASE.zip" \
+           "out/Calendar-$RELEASE.zip" \
+           "out/Chrome-$RELEASE.zip" \
+           "out/Contacts-$RELEASE.zip" \
+           "out/DeskClock-$RELEASE.zip" \
+           "out/Dialer-$RELEASE.zip" \
+           "out/Gmail-$RELEASE.zip" \
+           "out/GoogleTTS-$RELEASE.zip" \
+           "out/LatinIME-$RELEASE.zip" \
+           "out/Maps-$RELEASE.zip" \
+           "out/Markup-$RELEASE.zip" \
+           "out/Messaging-$RELEASE.zip" \
+           "out/Photos-$RELEASE.zip" \
+           "out/WebView-$RELEASE.zip" \
+           "out/Wellbeing-$RELEASE.zip"
 
        - name: Upload Build Artifact
          if: ${{ env.PACKAGE == 'true' }}
-         uses: actions/upload-artifact@v2
+         uses: actions/upload-artifact@v3
          with:
            name: BiTGApps-Build
            path: |
-             out/Assistant-v1.5.zip
-             out/AndroidAuto-v1.5.zip
-             out/Calculator-v1.5.zip
-             out/Calendar-v1.5.zip
-             out/Chrome-v1.5.zip
-             out/Contacts-v1.5.zip
-             out/DeskClock-v1.5.zip
-             out/Dialer-v1.5.zip
-             out/Gmail-v1.5.zip
-             out/GoogleTTS-v1.5.zip
-             out/LatinIME-v1.5.zip
-             out/Maps-v1.5.zip
-             out/Markup-v1.5.zip
-             out/Messaging-v1.5.zip
-             out/Photos-v1.5.zip
-             out/WebView-v1.5.zip
-             out/Wellbeing-v1.5.zip
+             out/Assistant-$RELEASE.zip
+             out/AndroidAuto-$RELEASE.zip
+             out/Calculator-$RELEASE.zip
+             out/Calendar-$RELEASE.zip
+             out/Chrome-$RELEASE.zip
+             out/Contacts-$RELEASE.zip
+             out/DeskClock-$RELEASE.zip
+             out/Dialer-$RELEASE.zip
+             out/Gmail-$RELEASE.zip
+             out/GoogleTTS-$RELEASE.zip
+             out/LatinIME-$RELEASE.zip
+             out/Maps-$RELEASE.zip
+             out/Markup-$RELEASE.zip
+             out/Messaging-$RELEASE.zip
+             out/Photos-$RELEASE.zip
+             out/WebView-$RELEASE.zip
+             out/Wellbeing-$RELEASE.zip
