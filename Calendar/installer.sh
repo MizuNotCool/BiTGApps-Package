@@ -498,8 +498,10 @@ is_uninstaller() {
 }
 
 sdk_v25_install() {
+  # Dedicated V3 Partitions
+  P="/product /system_ext"
   # Remove Calendar Google
-  for f in $SYSTEM $SYSTEM/product $SYSTEM/system_ext; do
+  for f in $SYSTEM $SYSTEM/product $SYSTEM/system_ext $P; do
     find $f -type d -name '*Etar*' -exec rm -rf {} +
     find $f -type d -name '*Calendar*' -exec rm -rf {} +
   done
@@ -562,6 +564,9 @@ df_partition() {
 }
 
 df_checker() {
+  if [ "$ZIPNAME" = "uninstall" ]; then
+    return 255
+  fi
   if [ "$size" -gt "$CAPACITY" ]; then
     ui_print "- ${partition} Space: $ds_hr"
   else

@@ -498,8 +498,10 @@ is_uninstaller() {
 }
 
 sdk_v25_install() {
+  # Dedicated V3 Partitions
+  P="/product /system_ext"
   # Remove Calculator Google
-  for f in $SYSTEM $SYSTEM/product $SYSTEM/system_ext; do
+  for f in $SYSTEM $SYSTEM/product $SYSTEM/system_ext $P; do
     find $f -type d -name '*Calculator*' -exec rm -rf {} +
   done
   ui_print "- Installing Calculator Google"
@@ -561,6 +563,9 @@ df_partition() {
 }
 
 df_checker() {
+  if [ "$ZIPNAME" = "uninstall" ]; then
+    return 255
+  fi
   if [ "$size" -gt "$CAPACITY" ]; then
     ui_print "- ${partition} Space: $ds_hr"
   else

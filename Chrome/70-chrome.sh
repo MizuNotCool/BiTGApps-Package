@@ -33,10 +33,6 @@ case "$1" in
       [ -n "$REPLACEMENT" ] && R="$S/$REPLACEMENT"
       [ -f "$C/$S/$FILE" ] && restore_file $S/"$FILE" "$R"
     done
-    for f in $SYS $SYS/product $SYS/system_ext; do
-      find $f -type d -name '*Chrome*' -exec rm -rf {} +
-      find $f -type d -name '*Library*' -exec rm -rf {} +
-    done
     for i in $(list_files); do
       chown root:root "$SYS/$i" 2>/dev/null
       chmod 644 "$SYS/$i" 2>/dev/null

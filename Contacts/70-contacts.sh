@@ -12,6 +12,9 @@ else
   TMP="/postinstall/tmp"
 fi
 
+# Dedicated V3 Partitions
+P="/postinstall/product /postinstall/system_ext"
+
 . /tmp/backuptool.functions
 
 list_files() {
@@ -27,13 +30,13 @@ case "$1" in
     done
   ;;
   restore)
+    for f in $SYS $SYS/product $SYS/system_ext $P; do
+      find $f -type d -name 'Contacts' -exec rm -rf {} +
+    done
     list_files | while read FILE REPLACEMENT; do
       R=""
       [ -n "$REPLACEMENT" ] && R="$S/$REPLACEMENT"
       [ -f "$C/$S/$FILE" ] && restore_file $S/"$FILE" "$R"
-    done
-    for f in $SYS $SYS/product $SYS/system_ext; do
-      find $f -type d -name '*Contacts*' -exec rm -rf {} +
     done
     for i in $(list_files); do
       chown root:root "$SYS/$i" 2>/dev/null

@@ -575,6 +575,9 @@ df_partition() {
 }
 
 df_checker() {
+  if [ "$ZIPNAME" = "uninstall" ]; then
+    return 255
+  fi
   if [ "$size" -gt "$CAPACITY" ]; then
     ui_print "- ${partition} Space: $ds_hr"
   else
