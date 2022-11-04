@@ -17,6 +17,7 @@ fi
 list_files() {
 cat <<EOF
 app/Maps/Maps.apk
+app/GLH/GLH.apk
 EOF
 }
 

@@ -9,6 +9,7 @@ mkdir -p "zip/sys"
 
 # Packages
 cp -f Maps/Maps.tar.xz zip/sys
+cp -f Maps/GLH.tar.xz zip/sys
 
 # Scripts
 cp -f update-binary.sh META-INF/com/google/android/update-binary

@@ -5,10 +5,12 @@
 # Structure
 mkdir -p "META-INF/com/google/android"
 mkdir -p "zip"
-mkdir -p "zip/sys"
+mkdir -p "zip/core"
 
 # Packages
-cp -f Messaging/Messaging.tar.xz zip/sys
+cp -f Messaging/Messaging.tar.xz zip/core
+cp -f Messaging/Services.tar.xz zip/core
+cp -f Messaging/Permissions.tar.xz zip
 
 # Scripts
 cp -f update-binary.sh META-INF/com/google/android/update-binary

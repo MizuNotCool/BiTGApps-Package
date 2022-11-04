@@ -492,6 +492,7 @@ is_uninstaller() {
     ui_print "- Uninstall Maps Google"
     rm -rf $SYSTEM_ADDOND/70-maps.sh
     rm -rf $SYSTEM_APP/Maps
+    rm -rf $SYSTEM_APP/GLH
     # End installation
     on_installed
   fi
@@ -500,8 +501,9 @@ is_uninstaller() {
 sdk_v25_install() {
   # Remove Maps Google
   rm -rf $SYSTEM_APP/Maps
+  rm -rf $SYSTEM_APP/GLH
   ui_print "- Installing Maps Google"
-  ZIP="zip/sys/Maps.tar.xz"
+  ZIP="zip/sys/Maps.tar.xz zip/sys/GLH.tar.xz"
   if [ "$BOOTMODE" = "false" ]; then
     for f in $ZIP; do unzip -o "$ZIPFILE" "$f" -d "$TMP"; done
   fi
@@ -510,6 +512,7 @@ sdk_v25_install() {
     for f in $ZIP; do $(unzip -o "$ZIPFILE" "$f" -d "$TMP" >/dev/null 2>&1); done
   fi
   tar -xf $ZIP_FILE/sys/Maps.tar.xz -C $TMP_SYS
+  tar -xf $ZIP_FILE/sys/GLH.tar.xz -C $TMP_SYS
   pkg_TMPSys
 }
 

@@ -491,7 +491,9 @@ is_uninstaller() {
   if [ "$ZIPNAME" = "uninstall" ]; then
     ui_print "- Uninstall Messaging Google"
     rm -rf $SYSTEM_ADDOND/70-messaging.sh
-    rm -rf $SYSTEM_APP/Messaging
+    rm -rf $SYSTEM_PRIV_APP/Messaging
+    rm -rf $SYSTEM_PRIV_APP/Services
+    rm -rf $SYSTEM_ETC_PERM/services.xml
     # End installation
     on_installed
   fi
@@ -506,7 +508,7 @@ sdk_v25_install() {
     find $f -type d -name '*messaging*' -exec rm -rf {} +
   done
   ui_print "- Installing Messaging Google"
-  ZIP="zip/sys/Messaging.tar.xz"
+  ZIP="zip/core/Messaging.tar.xz zip/core/Services.tar.xz zip/Permissions.tar.xz"
   if [ "$BOOTMODE" = "false" ]; then
     for f in $ZIP; do unzip -o "$ZIPFILE" "$f" -d "$TMP"; done
   fi
@@ -514,8 +516,11 @@ sdk_v25_install() {
   if [[ "$(getprop "sys.bootmode")" = "2" ]]; then
     for f in $ZIP; do $(unzip -o "$ZIPFILE" "$f" -d "$TMP" >/dev/null 2>&1); done
   fi
-  tar -xf $ZIP_FILE/sys/Messaging.tar.xz -C $TMP_SYS
-  pkg_TMPSys
+  tar -xf $ZIP_FILE/core/Messaging.tar.xz -C $TMP_PRIV
+  tar -xf $ZIP_FILE/core/Services.tar.xz -C $TMP_PRIV
+  tar -xf $ZIP_FILE/Permissions.tar.xz -C $TMP_PERMISSION
+  pkg_TMPPriv
+  pkg_TMPPerm
 }
 
 backup_script() {

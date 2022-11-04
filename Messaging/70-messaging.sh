@@ -19,10 +19,12 @@ P="/postinstall/product /postinstall/system_ext"
 
 list_files() {
 cat <<EOF
-app/Messaging/Messaging.apk
-app/Messaging/split_config.arm64_v8a.apk
-app/Messaging/split_config.en.apk
-app/Messaging/split_config.xxhdpi.apk
+priv-app/Messaging/Messaging.apk
+priv-app/Messaging/split_config.arm64_v8a.apk
+priv-app/Messaging/split_config.en.apk
+priv-app/Messaging/split_config.xxhdpi.apk
+priv-app/Services/Services.apk
+etc/permissions/services.xml
 EOF
 }
 
