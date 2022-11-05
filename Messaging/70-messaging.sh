@@ -13,7 +13,7 @@ else
 fi
 
 # Dedicated V3 Partitions
-P="/postinstall/product /postinstall/system_ext"
+P="/product /system_ext /postinstall/product /postinstall/system_ext"
 
 . /tmp/backuptool.functions
 
