@@ -502,8 +502,8 @@ sdk_v25_install() {
   P="/product /system_ext"
   # Remove Calendar Google
   for f in $SYSTEM $SYSTEM/product $SYSTEM/system_ext $P; do
-    find $f -type d -name '*Etar*' -exec rm -rf {} +
-    find $f -type d -name '*Calendar*' -exec rm -rf {} +
+    find $f -type d -name 'Etar' -exec rm -rf {} +
+    find $f -type d -name 'Calendar' -exec rm -rf {} +
   done
   ui_print "- Installing Calendar Google"
   ZIP="zip/sys/Calendar.tar.xz"

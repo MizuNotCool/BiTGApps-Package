@@ -502,7 +502,7 @@ sdk_v25_install() {
   P="/product /system_ext"
   # Remove Contacts Google
   for f in $SYSTEM $SYSTEM/product $SYSTEM/system_ext $P; do
-    find $f -type d -name '*Contacts*' -exec rm -rf {} +
+    find $f -type d -name 'Contacts' -exec rm -rf {} +
   done
   ui_print "- Installing Contacts Google"
   ZIP="zip/sys/Contacts.tar.xz"

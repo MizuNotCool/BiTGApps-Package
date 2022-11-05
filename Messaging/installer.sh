@@ -475,15 +475,27 @@ system_layout() {
   SYSTEM_OVERLAY="$SYSTEM/product/overlay"
 }
 
-pkg_TMPSys() {
-  file_list="$(find "$TMP_SYS/" -mindepth 1 -type f | cut -d/ ${DEST})"
-  dir_list="$(find "$TMP_SYS/" -mindepth 1 -type d | cut -d/ ${DEST})"
+pkg_TMPPriv() {
+  file_list="$(find "$TMP_PRIV/" -mindepth 1 -type f | cut -d/ ${DEST})"
+  dir_list="$(find "$TMP_PRIV/" -mindepth 1 -type d | cut -d/ ${DEST})"
   for file in $file_list; do
-    install -D "$TMP_SYS/${file}" "$SYSTEM_APP/${file}"
-    chmod 0644 "$SYSTEM_APP/${file}"
+    install -D "$TMP_PRIV/${file}" "$SYSTEM_PRIV_APP/${file}"
+    chmod 0644 "$SYSTEM_PRIV_APP/${file}"
   done
   for dir in $dir_list; do
-    chmod 0755 "$SYSTEM_APP/${dir}"
+    chmod 0755 "$SYSTEM_PRIV_APP/${dir}"
+  done
+}
+
+pkg_TMPPerm() {
+  file_list="$(find "$TMP_PERMISSION/" -mindepth 1 -type f | cut -d/ ${DEST})"
+  dir_list="$(find "$TMP_PERMISSION/" -mindepth 1 -type d | cut -d/ ${DEST})"
+  for file in $file_list; do
+    install -D "$TMP_PERMISSION/${file}" "$SYSTEM_ETC_PERM/${file}"
+    chmod 0644 "$SYSTEM_ETC_PERM/${file}"
+  done
+  for dir in $dir_list; do
+    chmod 0755 "$SYSTEM_ETC_PERM/${dir}"
   done
 }
 
