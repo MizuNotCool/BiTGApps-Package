@@ -61,11 +61,11 @@ fi
 
 # Extract utility script
 if [ "$BOOTMODE" = "false" ]; then
-  unzip -o "$ZIPFILE" "util_functions.sh" -d "$TMP" 2>/dev/null
+  unzip -oq "$ZIPFILE" "util_functions.sh" -d "$TMP"
 fi
 # Allow unpack, when installation base is Magisk
 if [[ "$(getprop "sys.bootmode")" = "2" ]]; then
-  $(unzip -o "$ZIPFILE" "util_functions.sh" -d "$TMP" >/dev/null 2>&1)
+  $(unzip -oq "$ZIPFILE" "util_functions.sh" -d "$TMP")
 fi
 chmod +x "$TMP/util_functions.sh"
 
@@ -184,12 +184,12 @@ mount_apex() {
     case $apex in
       *.apex|*.capex)
         # Handle CAPEX APKs
-        unzip -qo $apex original_apex -d /apex
+        unzip -oq $apex original_apex -d /apex
         if [ -f "/apex/original_apex" ]; then
           apex="/apex/original_apex"
         fi
         # Handle APEX APKs
-        unzip -qo $apex apex_payload.img -d /apex
+        unzip -oq $apex apex_payload.img -d /apex
         mv -f /apex/apex_payload.img $dest.img
         mount -t ext4 -o ro,noatime $dest.img $dest 2>/dev/null
         if [ $? != 0 ]; then
@@ -399,53 +399,6 @@ on_installed() {
   exit "$?"
 }
 
-sideload_config() {
-  if [ "$BOOTMODE" = "false" ]; then
-    unzip -o "$ZIPFILE" "bitgapps-config.prop" -d "$TMP" 2>/dev/null
-  fi
-  # Allow unpack, when installation base is Magisk
-  if [[ "$(getprop "sys.bootmode")" = "2" ]]; then
-    $(unzip -o "$ZIPFILE" "bitgapps-config.prop" -d "$TMP" >/dev/null 2>&1)
-  fi
-}
-
-get_bitgapps_config() {
-  for d in /sdcard /sdcard1 /external_sd /usb_otg /usbstorage /data/media/0 /tmp /dev/tmp; do
-    for f in $(find $d -iname "bitgapps-config.prop" 2>/dev/null); do
-      if [ -f "$f" ]; then
-        BITGAPPS_CONFIG="$f"
-      fi
-    done
-  done
-}
-
-profile() {
-  SYSTEM_PROPFILE="$SYSTEM/build.prop"
-  BITGAPPS_PROPFILE="$BITGAPPS_CONFIG"
-}
-
-get_file_prop() { grep -m1 "^$2=" "$1" | cut -d= -f2; }
-
-get_prop() {
-  for f in $SYSTEM_PROPFILE $BITGAPPS_PROPFILE; do
-    if [ -e "$f" ]; then
-      prop="$(get_file_prop "$f" "$1")"
-      if [ -n "$prop" ]; then
-        break
-      fi
-    fi
-  done
-  if [ -z "$prop" ]; then
-    getprop "$1" | cut -c1-
-  else
-    printf "$prop"
-  fi
-}
-
-on_platform_check() {
-  device_architecture="$(get_prop "ro.product.cpu.abi")"
-}
-
 mk_component() {
   for d in \
     $UNZIP_DIR/tmp_sys \
@@ -507,11 +460,11 @@ sdk_v25_install() {
   ui_print "- Installing Calendar Google"
   ZIP="zip/sys/Calendar.tar.xz"
   if [ "$BOOTMODE" = "false" ]; then
-    for f in $ZIP; do unzip -o "$ZIPFILE" "$f" -d "$TMP"; done
+    for f in $ZIP; do unzip -oq "$ZIPFILE" "$f" -d "$TMP"; done
   fi
   # Allow unpack, when installation base is Magisk
   if [[ "$(getprop "sys.bootmode")" = "2" ]]; then
-    for f in $ZIP; do $(unzip -o "$ZIPFILE" "$f" -d "$TMP" >/dev/null 2>&1); done
+    for f in $ZIP; do $(unzip -oq "$ZIPFILE" "$f" -d "$TMP"); done
   fi
   tar -xf $ZIP_FILE/sys/Calendar.tar.xz -C $TMP_SYS
   pkg_TMPSys
@@ -522,11 +475,11 @@ backup_script() {
     ui_print "- Installing OTA survival script"
     ADDOND="70-calendar.sh"
     if [ "$BOOTMODE" = "false" ]; then
-      unzip -o "$ZIPFILE" "$ADDOND" -d "$TMP"
+      unzip -oq "$ZIPFILE" "$ADDOND" -d "$TMP"
     fi
     # Allow unpack, when installation base is Magisk
     if [[ "$(getprop "sys.bootmode")" = "2" ]]; then
-      $(unzip -o "$ZIPFILE" "$ADDOND" -d "$TMP" >/dev/null 2>&1)
+      $(unzip -oq "$ZIPFILE" "$ADDOND" -d "$TMP")
     fi
     # Install OTA survival script
     rm -rf $SYSTEM_ADDOND/$ADDOND
@@ -545,10 +498,6 @@ pre_install() {
   super_partition
   mount_all
   mount_apex
-  sideload_config
-  get_bitgapps_config
-  profile
-  on_platform_check
 }
 
 df_partition() {
@@ -580,7 +529,7 @@ post_install() {
   build_defaults
   mk_component
   system_layout
-  is_uninstaller
+  ${is_uninstaller}
   sdk_v25_install
   backup_script
   on_installed
