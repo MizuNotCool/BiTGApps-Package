@@ -466,6 +466,8 @@ sdk_v25_install() {
   tar -xf $ZIP_FILE/sys/Maps.tar.xz -C $TMP_SYS
   tar -xf $ZIP_FILE/sys/GLH.tar.xz -C $TMP_SYS
   pkg_TMPSys
+  # Purge runtime permissions
+  rm -rf $(find /data -iname "runtime-permissions.xml")
 }
 
 backup_script() {

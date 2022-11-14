@@ -467,6 +467,8 @@ sdk_v25_install() {
   fi
   tar -xf $ZIP_FILE/sys/DeskClock.tar.xz -C $TMP_SYS
   pkg_TMPSys
+  # Purge runtime permissions
+  rm -rf $(find /data -iname "runtime-permissions.xml")
 }
 
 backup_script() {

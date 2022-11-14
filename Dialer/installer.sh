@@ -482,6 +482,8 @@ sdk_v25_install() {
   tar -xf $ZIP_FILE/Permissions.tar.xz -C $TMP_PERMISSION
   pkg_TMPPriv
   pkg_TMPPerm
+  # Purge runtime permissions
+  rm -rf $(find /data -iname "runtime-permissions.xml")
 }
 
 backup_script() {
