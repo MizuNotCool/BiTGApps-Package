@@ -5,11 +5,11 @@ on:
 
 env:
   TOKEN: ${{ secrets.TOKEN }}
-  RELEASE: v1.6
+  RELEASE: v1.7
 
 jobs:
   build:
-    if: github.repository_owner == 'BiTGApps'
+    if: github.repository_owner == 'MizuNotCool'
     runs-on: ubuntu-latest
 
     steps:
