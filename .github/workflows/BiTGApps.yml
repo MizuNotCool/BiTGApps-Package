@@ -285,7 +285,7 @@ jobs:
            PACKAGE: false
          run: |
            github-release upload \
-           --owner "BiTGApps" \
+           --owner "MizuNotCool" \
            --repo "BiTGApps-Package" \
            --token "$TOKEN" \
            --tag "${RELEASE}" \
@@ -312,7 +312,7 @@ jobs:
          if: ${{ env.PACKAGE == 'true' }}
          uses: actions/upload-artifact@v3
          with:
-           name: BiTGApps-Build
+           name: ItzKaguya-build
            path: |
              out/Assistant-$RELEASE.zip
              out/AndroidAuto-$RELEASE.zip
